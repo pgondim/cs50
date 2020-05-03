@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script>
+        if (!localStorage.getItem('counter'))
+            localStorage.setItem('counter', 0);
+
+        document.addEventListener('DOMContentLoaded', ()=>{
+            document.querySelector('#counter').innerHTML = localStorage.getItem('counter');
+
+            document.querySelector('button').onclick = () => {
+                // Increment current counter
+                let counter = localStorage.getItem('counter');
+                counter++;
+
+                // Update counter
+                document.querySelector('#counter').innerHTML = counter;
+                localStorage.setItem('counter', counter);
+            }
+        });
+
+
+    </script>
+
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1 id="counter">0</h1>
+    <button type="button" class="btn btn-dark">Contar</button>
+
+</body>
+</html>

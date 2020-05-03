@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Resultado Login
+{% endblock %}
+
+{% block body %}
+
+<h1>{{msg}}</h1>
+<a href= "{{ url_for('pagina', user_id=user_id) }}" class="btn btn-primary  mt-3">Avançar</a>
+{% endblock %}

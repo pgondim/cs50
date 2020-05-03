@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function(){
+            document.querySelector('button').onclick = contador
+        })
+
+        let counter = 0
+        function contador(){
+            counter++
+            document.querySelector('#counter').innerHTML = counter
+
+            if (counter % 10 === 0){
+                alert(`Contador está em ${counter}`)
+            }
+        }
+    </script>
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1 id="counter">0</h1>
+    <button type="button" class="btn btn-primary">Contar</button>
+
+</body>
+</html>

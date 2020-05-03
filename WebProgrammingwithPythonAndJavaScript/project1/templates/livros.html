@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Livros
+{% endblock %}
+
+{% block body %}
+<h1>Resultado busca:</h1>
+
+    <ul>
+        {% for livro in livros %}
+            <li>
+                <a href="{{ url_for('descricao',user_id=user_id, livro_isbn=livro.isbn) }}">
+                    {{ livro.title }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

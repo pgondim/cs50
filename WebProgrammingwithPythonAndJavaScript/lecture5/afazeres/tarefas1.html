@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script>
+        document.addEventListener('DOMContentLoaded', ()=>{
+
+            document.querySelector('#tarefa').onkeyup = ()=>{
+                document.querySelector('#submit').disabled = false;
+            };
+
+            document.querySelector('#nova-tarefa').onsubmit = ()=>{
+
+                const li = document.createElement('li');
+
+                li.innerHTML = document.querySelector('#tarefa').value;
+
+                document.querySelector('#tarefas').append(li);
+
+                document.querySelector('#tarefa').value = '';
+
+                document.querySelector('#submit').disabled = true;
+                
+                // o comportamento padrão de submissão de formulário é tentar enviar esse formulário pra outro site, como queremos ficar apenas nessa pagina, temos que dar um retorno de false a fim de parar a submissão do formulário 
+                return false;
+            };
+        });
+    </script>
+    <title>Tarefas</title>
+</head>
+
+
+<body>
+
+    <h1>Tarefas</h1>
+    <ul id="tarefas"></ul>
+
+    <form id="nova-tarefa">
+        <input id="tarefa" autocomplete="off" type="text" placeholder="Nova tarefa">
+        <input type="submit" disabled="true" id="submit">
+    </form>
+    
+
+</body>
+</html>

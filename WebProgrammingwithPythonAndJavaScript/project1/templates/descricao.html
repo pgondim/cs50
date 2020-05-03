@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Livro
+{% endblock %}
+
+{% block body %}
+<h1>Descrição</h1>
+
+<ul>
+    <li>ISBN: {{livro.isbn}}</li>
+    <li>Título: {{livro.title}}</li>
+    <li>Autor: {{livro.author}}</li>
+    <li>Ano: {{livro.year}}</li>
+</ul>
+
+    
+
+<h1>Comentarios</h1>
+    <ul>
+        {% for comentario in comentarios %}
+            <li>{{ comentario.comentario }}</li>
+        {% else %}
+            <li>Não possui comentarios.</li>
+        {% endfor %}
+    </ul>
+
+
+    <form action="{{url_for('add_comentario',user_id=user_id, livro_isbn=livro.isbn)}}" method="post">
+
+        <div class="form-group mt-5">
+            <input class="form-control " name="comentario" placeholder="Digite seu comentario">
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-primary">Comentar</button>
+        </div>
+
+    </form>
+
+{% endblock %}

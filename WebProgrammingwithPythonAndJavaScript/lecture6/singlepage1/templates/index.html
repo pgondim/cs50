@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script>
+
+        document.addEventListener('DOMContentLoaded', () =>{
+
+            load_page('first');
+
+            document.querySelectorAll('.nav-link').forEach(link=>{
+                link.onclick = ()=>{
+                    load_page(link.dataset.page);
+                    return false;
+                };
+            });
+
+        });
+
+        window.onpopstate = e=>{
+            const data = e.state;
+            document.title = data.title;
+            document.querySelector('#body').innerHTML = data.text;
+        };
+
+        function load_page(name){
+            const request = new XMLHttpRequest();
+            request.open('GET', `/${name}`);
+            request.onload = ()=>{
+                const response = request.responseText;
+                document.querySelector('#body').innerHTML = response;
+
+                document.title = name;
+                //arg1 = informação sobre a página a ser carregada ; arg2 = titulo da pagina a ser carregada; arg3= url que eu quero passar
+                history.pushState({'title': name, 'text': response}, name, name);
+            };
+            request.send();
+        }
+
+    </script>
+
+    <title>Document</title>
+</head>
+
+<body>
+    
+    <ul id="nav">
+        <li>
+            <a href="" class="nav-link" data-page="first">Primeira página</a>
+        </li>
+        <li>
+            <a href="" class="nav-link" data-page="second">Segunda página</a>
+        </li>
+        <li>
+            <a href="" class="nav-link" data-page="third">Terceira página</a>
+        </li>
+    </ul>
+
+    <hr>
+
+    <div id="body">
+    </div>
+
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+{% extends "voos/base.html" %}
+
+{% block title %}
+    Voo {{voo.id}}
+{% endblock %}
+
+{% block body %}
+    <h1>Voo {{voo.id}}</h1>
+    <ul>
+        <li>Origem: {{voo.origem}}</li>
+        <li>Destino: {{voo.destino}}</li>
+
+    </ul>
+
+    <h2>Passageiros:</h2>
+    <ul>
+        {% for p in passageiros %}
+            <li>{{p}}</li>
+        {% empty %}
+            <li>Sem passageiros</li>
+        {% endfor %}
+    </ul>
+
+    <hr>
+
+    <h2>Comprar passagem</h2>
+    {% if nao_passageiros %}
+        <form action="{% url 'comprar' voo.id %}" method="post">
+            {% csrf_token %}
+            <select name="passageiro" >
+                {% for p in nao_passageiros %}
+                    <option value="{{p.id}}">{{p}}</option>
+                {% endfor %}
+            </select>
+
+            <input type="submit" value="Comprar passagem">
+        </form>
+    {% else %}
+        <div>Todos os passageiros cadastrados já fazem parte do voo.</div>
+    {% endif %}
+
+    <a href="{% url 'index' %}">Voltar para a lista de voos</a>
+{% endblock %}
